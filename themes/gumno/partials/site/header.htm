@@ -1,0 +1,24 @@
+description = "Site header"
+==
+<header class="site-header">
+    <div class="shell site-header__inner">
+        <a class="brand" href="{{ 'home'|page }}" aria-label="Гумно почетна">
+            <img src="{{ 'assets/images/LogoGumno.png'|theme }}" width="160" height="38" alt="Гумно" decoding="async">
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="visually-hidden">Мени</span>
+        </button>
+        <nav id="site-nav" class="site-nav" data-nav>
+            <a href="{{ 'home'|page }}" class="{{ this.page.id == 'home' ? 'is-active' }}">Почетна</a>
+            <a href="{{ 'proizvodstvo'|page }}" class="{{ this.page.id == 'proizvodstvo' ? 'is-active' }}">Производство</a>
+            <a href="{{ 'proizvodi'|page }}" class="{{ this.page.id == 'proizvodi' ? 'is-active' }}">Каталог</a>
+            <a href="{{ 'brendovi'|page }}" class="{{ this.page.id == 'brendovi' ? 'is-active' }}">Брендови</a>
+            <a href="{{ 'maloprodazba'|page }}" class="{{ this.page.id == 'maloprodazba' ? 'is-active' }}">Малопродажба</a>
+            <a href="{{ 'za-nas'|page }}" class="{{ this.page.id == 'za-nas' ? 'is-active' }}">За нас</a>
+            <a href="{{ 'kontakt'|page }}" class="{{ this.page.id == 'kontakt' ? 'is-active' }} site-nav__cta">Контакт</a>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,83 @@
+description = "SEO meta, Open Graph, and JSON-LD"
+==
+{% set pageTitle = this.page.meta_title ?: (this.page.title ~ ' | Гумно Охрид') %}
+{% set pageDescription = this.page.meta_description ?: 'Гумно Охрид — производство на PVC цевки, фитинг, WC казанчиња и дистрибуција на санитарни брендови.' %}
+{% set path = this.page.id == 'home' ? '/' : this.page.url %}
+{% if this.param('slug') %}
+    {% set path = path|replace({':slug': this.param('slug')}) %}
+{% endif %}
+{% set absoluteUrl = url(path) %}
+{% set ogImagePath = 'assets/images/logo-gumno.png'|theme %}
+{% if this.page.id == 'proizvod' and product.image is defined and product.image %}
+    {% set ogImagePath = ('assets/images/' ~ product.image)|theme %}
+{% elseif this.page.id == 'za-nas' %}
+    {% set ogImagePath = 'assets/images/gumno-sediste.webp'|theme %}
+{% elseif this.page.id == 'maloprodazba' or this.page.id == 'prodazen-salon' %}
+    {% set ogImagePath = 'assets/images/gumno-rasanec.webp'|theme %}
+{% elseif this.page.id == 'proizvodstvo' %}
+    {% set ogImagePath = 'assets/images/gumno-cover-paralax.webp'|theme %}
+{% endif %}
+{% set absoluteImage = url(ogImagePath) %}
+{% set phoneMain = this.theme.phone_main|default('070 225 587') %}
+{% set email = this.theme.email|default('info@gumno.com.mk') %}
+{% set addressHq = this.theme.address_hq|default('ул. Рашанец б.б. с. Лескоец, Охрид') %}
+{% set facebookUrl = this.theme.facebook_url|default('https://www.facebook.com/gumnoohrid/') %}
+
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDescription|e('html_attr') }}">
+<link rel="canonical" href="{{ absoluteUrl }}">
+
+<meta property="og:locale" content="mk_MK">
+<meta property="og:type" content="{{ this.page.id == 'home' ? 'website' : 'article' }}">
+<meta property="og:site_name" content="Гумно Охрид">
+<meta property="og:title" content="{{ pageTitle|e('html_attr') }}">
+<meta property="og:description" content="{{ pageDescription|e('html_attr') }}">
+<meta property="og:url" content="{{ absoluteUrl }}">
+<meta property="og:image" content="{{ absoluteImage }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ pageTitle|e('html_attr') }}">
+<meta name="twitter:description" content="{{ pageDescription|e('html_attr') }}">
+<meta name="twitter:image" content="{{ absoluteImage }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "name": "Гумно Охрид",
+  "url": "{{ url('/') }}",
+  "logo": "{{ url('assets/images/logo-gumno.png'|theme) }}",
+  "image": "{{ absoluteImage }}",
+  "email": "{{ email }}",
+  "telephone": "{{ phoneMain }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ addressHq|e('js') }}",
+    "addressLocality": "Охрид",
+    "addressCountry": "MK"
+  },
+  "sameAs": [
+    "{{ facebookUrl }}"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "North Macedonia"
+  }
+}
+</script>
+{% if this.page.id == 'proizvod' and product is defined and product %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title|json_encode|raw }},
+  "description": {{ (product.meta_description ?: product.description)|striptags|json_encode|raw }},
+  "url": "{{ absoluteUrl }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Гумно"
+  }{% if product.image %},
+  "image": "{{ url(('assets/images/' ~ product.image)|theme) }}"{% endif %}
+}
+</script>
+{% endif %}

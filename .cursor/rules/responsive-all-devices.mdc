@@ -1,0 +1,24 @@
+---
+description: Keep every Gumno page fully responsive across devices
+alwaysApply: true
+---
+
+# Responsive on all devices
+
+Every page and component in this project must work well on phones, tablets, laptops, and desktops.
+
+## Requirements
+
+- Design mobile-first, then enhance for larger breakpoints.
+- Test key layouts at roughly `360`, `768`, `1024`, and `1280+` widths.
+- Avoid horizontal scroll. Use fluid widths, `clamp()`, flexible grids, and wrapping flex rows.
+- Touch targets should stay usable on mobile (about 44px where interactive).
+- Navigation must remain usable on small screens (existing hamburger pattern).
+- Images, maps, cards, forms, hero sections, and footers must reflow without overlapping or clipping.
+- Sticky mobile UI (if used) must not hide primary content; add bottom padding when needed.
+- Do not ship desktop-only layouts. If a section looks cramped or sparse on one breakpoint, fix it before finishing.
+
+## When changing pages
+
+Ask: does this still read clearly on a phone and a wide desktop?
+If not, adjust spacing, columns, type size, or stacking before considering the work done.

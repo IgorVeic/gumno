@@ -1,0 +1,29 @@
+url = "/proizvodstvo/kapaci-za-sholja"
+layout = "default"
+title = "Капаци за шоља"
+meta_title = "Капаци за WC шоља — Гумно производство"
+meta_description = "Капаци за WC шоља од сопственото производство на Гумно Охрид, достапни во повеќе практични модели."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $items = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    $this['products'] = array_values(array_filter($items, function ($item) {
+        $title = mb_strtolower($item['title'] ?? '');
+        return str_contains($title, 'капак') && (str_contains($title, 'wc') || str_contains($title, 'шољ'));
+    }));
+}
+==
+<section class="page-hero page-hero--image" style="--hero-image:url('{{ 'assets/images/kapak-sholja-products.webp'|theme }}')">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Гумно производство</p>
+        <h1>Капаци за WC шоља</h1>
+        <p class="lede">Практични модели за секојдневна употреба од производната програма на Гумно.</p>
+    </div>
+</section>
+<section class="section catalog-section">
+    <div class="shell">
+        <a class="back-link" href="{{ 'proizvodstvo'|page }}">← Назад кон производство</a>
+        {% partial 'catalog/product-grid' products=products %}
+    </div>
+</section>

@@ -1,0 +1,26 @@
+url = "/pvc-cevki"
+layout = "default"
+title = "PVC цевки"
+meta_title = "PVC цевки и фитинг — Гумно Охрид"
+meta_description = "PVC цевки, колена, спојки, редуцири и фитинг за канализациски системи од понудата и производството на Гумно."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $items = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    $this['products'] = array_values(array_filter($items, fn($item) => in_array('pvc', $item['groups'] ?? [], true)));
+}
+==
+<section class="page-hero page-hero--soft">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Категорија</p>
+        <h1>PVC цевки и фитинг</h1>
+        <p class="lede">Сигурни елементи за канализациски и водоводни системи, едноставни за транспорт и монтажа.</p>
+    </div>
+</section>
+<section class="section catalog-section">
+    <div class="shell">
+        {% partial 'catalog/toolbar' active='pvc' count=products|length %}
+        {% partial 'catalog/product-grid' products=products %}
+    </div>
+</section>

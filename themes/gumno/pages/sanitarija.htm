@@ -1,0 +1,26 @@
+url = "/sanitarija"
+layout = "default"
+title = "Санитарија"
+meta_title = "Санитарија и опрема за бања — Гумно Охрид"
+meta_description = "WC школки, казанчиња, капаци, умивалници, бидеа, туш кабини и санитарна опрема од понудата на Гумно Охрид."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $items = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    $this['products'] = array_values(array_filter($items, fn($item) => in_array('sanitarija', $item['groups'] ?? [], true)));
+}
+==
+<section class="page-hero page-hero--soft">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Категорија</p>
+        <h1>Санитарија</h1>
+        <p class="lede">Функционална санитарна опрема и решенија за современи бањи.</p>
+    </div>
+</section>
+<section class="section catalog-section">
+    <div class="shell">
+        {% partial 'catalog/toolbar' active='sanitarija' count=products|length %}
+        {% partial 'catalog/product-grid' products=products %}
+    </div>
+</section>

@@ -1,0 +1,28 @@
+url = "/proizvodi"
+layout = "default"
+title = "Производи"
+meta_title = "Производи и опрема — Гумно Охрид"
+meta_description = "Разгледајте го каталогот на Гумно: PVC цевки и фитинг, санитарија, славини, вентили, водомери и опрема за бања."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $this['products'] = is_file($path)
+        ? (json_decode(file_get_contents($path), true) ?: [])
+        : [];
+}
+==
+<section class="page-hero page-hero--soft">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Каталог</p>
+        <h1>Производи</h1>
+        <p class="lede">Цевки, фитинг, санитарија и опрема за сигурни и современи водоводни решенија.</p>
+    </div>
+</section>
+
+<section class="section catalog-section">
+    <div class="shell">
+        {% partial 'catalog/toolbar' active='all' count=products|length %}
+        {% partial 'catalog/product-grid' products=products %}
+    </div>
+</section>

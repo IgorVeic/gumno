@@ -1,0 +1,27 @@
+<form class="contact-form" data-request="{{ __SELF__ }}::onFormSubmit" data-request-validate data-request-flash data-animate="fade-up">
+    {{ form_token() }}
+    <div id="{{ __SELF__ }}_forms_flash"></div>
+
+    <label>
+        <span>Име</span>
+        <input type="text" name="name" required autocomplete="name">
+    </label>
+    <label>
+        <span>Е-маил</span>
+        <input type="email" name="email" required autocomplete="email">
+    </label>
+    <label>
+        <span>Наслов</span>
+        <input type="text" name="subject" required>
+    </label>
+    <label>
+        <span>Порака</span>
+        <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <div class="contact-form__captcha">
+        {% partial '@recaptcha' %}
+    </div>
+
+    <button class="btn" type="submit">Испрати</button>
+</form>

@@ -1,0 +1,34 @@
+phone_main:
+    label: Main phone
+    type: text
+    default: '070 225 587'
+phone_commerce:
+    label: Commerce phone
+    type: text
+    default: '070 204 624'
+phone_accounting:
+    label: Accounting phone
+    type: text
+    default: '072 302 809'
+phone_hardware:
+    label: Hardware store phone
+    type: text
+    default: '075 355 347'
+address_hq:
+    label: HQ / showroom address
+    type: textarea
+    size: small
+    default: 'ул. Рашанец б.б. с. Лескоец, Охрид'
+address_hardware:
+    label: Hardware store address
+    type: textarea
+    size: small
+    default: '7-ми Ноември 183, Охрид'
+email:
+    label: Contact email
+    type: text
+    default: 'info@gumno.com.mk'
+facebook_url:
+    label: Facebook page
+    type: text
+    default: 'https://www.facebook.com/gumnoohrid/'

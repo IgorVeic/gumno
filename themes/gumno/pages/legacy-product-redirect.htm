@@ -1,0 +1,22 @@
+url = "/:slug"
+layout = ""
+title = "Redirect"
+==
+function onStart()
+{
+    $slug = rawurldecode((string) $this->param('slug'));
+    if ($slug === 'производи') {
+        return Redirect::to('/proizvodi', 301);
+    }
+
+    $path = themes_path('gumno/assets/data/products.json');
+    $products = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    foreach ($products as $product) {
+        if (($product['slug'] ?? '') === $slug) {
+            return Redirect::to('/proizvod/' . rawurlencode($slug), 301);
+        }
+    }
+
+    return Response::make($this->controller->run('404'), 404);
+}
+==

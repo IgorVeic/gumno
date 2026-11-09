@@ -1,0 +1,84 @@
+url = "/brendovi/:slug"
+layout = "default"
+title = "Бренд"
+meta_title = "Брендови — Гумно Охрид"
+meta_description = "Партнерски брендови застапени во продажната програма на Гумно Охрид."
+==
+function onStart()
+{
+    $brands = [
+        'dianflex' => [
+            'name' => 'DIANFLEX', 'logo' => 'dianflex.webp', 'image' => 'dianflex-featured.webp',
+            'copy' => 'Dianflex е основан во 1982 година во Италија како фирма специјализирана за производство и продажба на флексибилни врски за славини. Денес компанијата има производни платформи во Италија и широка мрежа низ Европа. Високите стандарди за производи и услуги се потврдени со сертификатот за квалитет UNI EN ISO 9001:2000.'
+        ],
+        'cimos-titan' => [
+            'name' => 'CIMOS TITAN', 'logo' => 'cimos-titan.webp', 'image' => 'cimos-titan-featured.webp',
+            'copy' => 'CIMOS ТИТАН ја продолжува традицијата започната во 1896 година, а производството на цевководни фитинзи датира од 1933 година. Компанијата ја задржува докажаната производна програма и постојано ги модернизира технологијата, квалитетот и еколошките стандарди.'
+        ],
+        'komak' => [
+            'name' => 'KOMAK', 'logo' => 'komak.webp', 'image' => 'komak-featured.webp',
+            'copy' => 'Основан во 1984 година како механичка работилница, KOMAK е посветен на производство на квалитетни водоводни приклучоци. Широкиот асортиман и редовното тестирање се водени од едноставно правило: задоволен купувач е сигурен купувач.'
+        ],
+        'hp-trend' => [
+            'name' => 'HP Trend', 'logo' => 'hp-trend.webp', 'image' => 'hp-trend-featured.webp',
+            'copy' => 'HP Trend е чешки производител основан во 1994 година и е меѓу водечките производители на пластични цевководни системи за топла и ладна вода, подно греење и компримиран воздух. Производната програма користи флексибилни материјали со одлична отпорност на притисок.'
+        ],
+        'marbomil' => [
+            'name' => 'MARBOMIL', 'logo' => 'marbomil-serbia.webp', 'image' => 'marbomil-serbia-featured.webp',
+            'copy' => 'MARBOMIL нуди еднорачни славини со седумгодишна гаранција. Секој производ е испитан според стандардите на Европската унија. Асортиманот, организираниот превоз, овластениот сервис и стабилното снабдување го следат нивното мото: „Квалитетот е суштината на нашето постоење“.'
+        ],
+        'cersanit' => [
+            'name' => 'CERSANIT', 'logo' => 'cersanit.webp', 'image' => 'cersanit-new-featured.webp',
+            'copy' => 'CERSANIT е една од најголемите групации за санитарија во Источна Европа, со милиони произведени парчиња санитарна опрема годишно. Брендот е препознатлив по функционален дизајн, развиена производна мрежа и постојан акцент на квалитетот.'
+        ],
+        'euroser' => [
+            'name' => 'EUROSER', 'logo' => 'euroser.webp', 'image' => 'euroser-featured.webp',
+            'copy' => 'EUROSER ја развива својата керамичка и санитарна програма со фокус на изглед, естетика и практичен дизајн за современи бањи. Модерното управување, искусниот тим и растечкиот производен капацитет се насочени кон квалитетна и сигурна услуга.'
+        ],
+        'izoterm' => [
+            'name' => 'IZOTERM', 'logo' => 'izoterm.webp', 'image' => 'izoterm-featured.webp',
+            'copy' => 'IZOTERM произведува изолациони цевки од екструдиран полиетилен според високи меѓународни стандарди. Производите се наменети за централно греење, климатизација, санитарни инсталации и канализациски цевководи, со еластичност и висока отпорност на механички оштетувања.'
+        ],
+        'zenner' => [
+            'name' => 'ZENNER', 'logo' => 'zenner.webp', 'image' => 'zenner-featured.webp',
+            'copy' => 'ZENNER повеќе од 100 години развива, произведува и пласира иновативна мерна опрема. Брендот се залага за иновација, квалитет и прецизност, а домашните водомери за куќи и станови се важен дел од неговото портфолио.'
+        ],
+        'ivanicplast' => [
+            'name' => 'IVANIĆPLAST', 'logo' => 'ivanicplast.webp', 'image' => 'ivanicplast-featured.webp',
+            'copy' => 'IVANIĆPLAST е регионален производител на практични пластични производи за бања и домаќинство. Програмата е развиена за секојдневна, сигурна употреба и е достапна преку продажната мрежа на Гумно.'
+        ],
+    ];
+    $slug = (string) $this->param('slug');
+    if (!isset($brands[$slug])) {
+        return \Response::make($this->controller->run('404'), 404);
+    }
+    $brand = $brands[$slug];
+    $this['brand'] = $brand;
+    $this->page->title = $brand['name'];
+    $this->page->meta_title = $brand['name'] . ' — Брендови | Гумно Охрид';
+    $this->page->meta_description = mb_substr($brand['copy'], 0, 158);
+}
+==
+<section class="page-hero page-hero--image brand-hero" style="--hero-image:url('{{ ('assets/images/' ~ brand.image)|theme }}')">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Наши партнери</p>
+        <h1>{{ brand.name }}</h1>
+        <p class="lede">Квалитетна програма достапна преку Гумно Охрид.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="shell brand-detail">
+        <div class="brand-detail__logo" data-animate="fade-up">
+            <img src="{{ ('assets/images/' ~ brand.logo)|theme }}" width="260" height="110" alt="{{ brand.name }}" loading="lazy" decoding="async">
+        </div>
+        <div class="brand-detail__copy" data-animate="fade-up">
+            <p class="eyebrow">За брендот</p>
+            <h2>{{ brand.name }}</h2>
+            <p>{{ brand.copy }}</p>
+            <div class="product-detail__actions">
+                <a class="btn" href="{{ 'kontakt'|page }}">Прашајте за производите</a>
+                <a class="btn btn--ghost" href="{{ 'brendovi'|page }}">Сите брендови</a>
+            </div>
+        </div>
+    </div>
+</section>

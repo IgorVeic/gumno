@@ -1,0 +1,47 @@
+description = "Default site layout"
+==
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% partial 'site/meta' %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32.png'|theme }}">
+    <link rel="apple-touch-icon" href="{{ 'assets/images/favicon-180.png'|theme }}">
+    {% if this.page.id == 'home' %}
+    <link rel="preload" href="{{ 'assets/images/logo-gumno.png'|theme }}" as="image">
+    {% endif %}
+    <link rel="stylesheet" href="{{ 'assets/fonts/fonts.css'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=30">
+    {% styles %}
+</head>
+<body class="page-{{ this.page.id }}">
+    <a class="skip-link" href="#main">Прескокни на содржина</a>
+    {% if this.page.id != 'home' %}
+        {% partial 'site/header' %}
+    {% endif %}
+    <main id="main" tabindex="-1">
+        {% page %}
+    </main>
+    {% if this.page.id != 'home' %}
+        {% partial 'site/footer' %}
+    {% endif %}
+    {% if this.page.id != 'home' and this.page.id != '404' and this.page.id != 'kontakt' %}
+        {% partial 'site/mobile-cta' %}
+    {% endif %}
+    {% if this.page.id == 'home' %}
+    <script defer src="{{ 'assets/js/vendor/gsap.min.js'|theme }}"></script>
+    {% elseif this.page.id != '404' %}
+    <script defer src="{{ 'assets/js/vendor/gsap.min.js'|theme }}"></script>
+    <script defer src="{{ 'assets/js/vendor/ScrollTrigger.min.js'|theme }}"></script>
+    {% endif %}
+    <script defer src="{{ 'assets/js/theme.js'|theme }}?v=14"></script>
+    {% if this.page.id == 'kontakt' %}
+        {% framework extras %}
+    {% endif %}
+    {% scripts %}
+    {% if this.page.id == 'kontakt' %}
+    <script defer src="{{ 'assets/js/recaptcha-init.js'|theme }}?v=2"></script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,76 @@
+url = "/proizvod/:slug"
+layout = "default"
+title = "Производ"
+meta_title = "Производ — Гумно Охрид"
+meta_description = "Производ од програмата на Гумно Охрид."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $products = is_file($path)
+        ? (json_decode(file_get_contents($path), true) ?: [])
+        : [];
+    $slug = rawurldecode((string) $this->param('slug'));
+    foreach ($products as $product) {
+        if (($product['slug'] ?? '') === $slug) {
+            $this['product'] = $product;
+            $this->page->title = $product['title'];
+            $this->page->meta_title = $product['title'] . ' — Гумно Охрид';
+            $this->page->meta_description = $product['meta_description'] ?: ($product['description'] ?? '');
+            return;
+        }
+    }
+    return \Response::make($this->controller->run('404'), 404);
+}
+==
+<section class="section product-page">
+    <div class="shell">
+        <nav class="product-breadcrumb" aria-label="Патека">
+            <a href="{{ 'proizvodi'|page }}">Производи</a>
+            <span aria-hidden="true">/</span>
+            {% if product.categories|length %}
+            <span>{{ product.categories|first }}</span>
+            <span aria-hidden="true">/</span>
+            {% endif %}
+            <span aria-current="page">{{ product.title }}</span>
+        </nav>
+
+        <div class="product-detail">
+            <div class="product-detail__media" data-animate="fade-up">
+                {% if product.image %}
+                <img
+                    src="{{ ('assets/images/' ~ product.image)|theme }}"
+                    width="{{ product.width }}"
+                    height="{{ product.height }}"
+                    alt="{{ product.title }}"
+                    decoding="async"
+                >
+                {% else %}
+                <span class="catalog-card__fallback" aria-hidden="true">{{ product.title|slice(0, 1) }}</span>
+                {% endif %}
+            </div>
+
+            <div class="product-detail__content" data-animate="fade-up">
+                {% if product.categories|length %}
+                <p class="eyebrow">{{ product.categories|first }}</p>
+                {% else %}
+                <p class="eyebrow">Производ</p>
+                {% endif %}
+                <h1>{{ product.title }}</h1>
+                <p class="product-detail__lede">{{ product.description }}</p>
+
+                {% if product.details_html %}
+                <div class="product-specs">
+                    <h2>Спецификации</h2>
+                    {{ product.details_html|raw }}
+                </div>
+                {% endif %}
+
+                <div class="product-detail__actions">
+                    <a class="btn" href="{{ 'kontakt'|page }}">Побарај информација</a>
+                    <a class="btn btn--ghost" href="{{ 'proizvodi'|page }}">Сите производи</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

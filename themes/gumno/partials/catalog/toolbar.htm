@@ -1,0 +1,12 @@
+{% set active = active|default('all') %}
+<div class="catalog-toolbar">
+    <nav class="category-nav" aria-label="Категории на производи">
+        <a class="{{ active == 'all' ? 'is-active' }}" href="{{ 'proizvodi'|page }}">Сите</a>
+        <a class="{{ active == 'pvc' ? 'is-active' }}" href="{{ 'pvc-cevki'|page }}">PVC цевки</a>
+        <a class="{{ active == 'sanitarija' ? 'is-active' }}" href="{{ 'sanitarija'|page }}">Санитарија</a>
+        <a class="{{ active == 'baterii' ? 'is-active' }}" href="{{ 'baterii'|page }}">Батерии</a>
+    </nav>
+    {% if count is defined %}
+    <p class="catalog-count">{{ count }} {% if count == 1 %}производ{% else %}производи{% endif %}</p>
+    {% endif %}
+</div>

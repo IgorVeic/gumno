@@ -1,0 +1,76 @@
+url = "/maloprodazba/:slug"
+layout = "default"
+title = "Продажен салон"
+meta_title = "Продажен салон — Гумно Охрид"
+meta_description = "Продажно место на Гумно во Охрид."
+==
+function onStart()
+{
+    $locations = [
+        'prodazen-salon-1' => [
+            'name' => 'Продажен салон 1',
+            'address' => 'ул. Рашанец б.б., с. Лескоец, Охрид',
+            'description' => 'Продажен салон и седиште на Гумно со избор на санитарија, цевки, фитинг и опрема.',
+            'phone' => '070 225 587',
+            'phone_link' => '+38970225587',
+            'map' => 'https://www.google.com/maps?q=Gumno%20Rasanec%20Ohrid&output=embed',
+        ],
+        'prodazen-salon2' => [
+            'name' => 'Продажен салон 2',
+            'address' => 'Булевар Туристичка б.б., Охрид',
+            'description' => 'Продажно место на Гумно на Булевар Туристичка со производи за водовод и уредување бањи.',
+            'phone' => '070 225 587',
+            'phone_link' => '+38970225587',
+            'map' => 'https://www.google.com/maps?q=Bulevar%20Turisticka%20Ohrid&output=embed',
+        ],
+        'prodazen-salon3' => [
+            'name' => 'Продажен салон 3',
+            'address' => 'ул. Јане Сандански, Охрид',
+            'description' => 'Продажно место на Гумно во централното градско подрачје на Охрид.',
+            'phone' => '075 355 347',
+            'phone_link' => '+38975355347',
+            'map' => 'https://www.google.com/maps?q=Jane%20Sandanski%20Ohrid&output=embed',
+        ],
+    ];
+    $slug = (string) $this->param('slug');
+    if (!isset($locations[$slug])) {
+        return \Response::make($this->controller->run('404'), 404);
+    }
+    $location = $locations[$slug];
+    $this['location'] = $location;
+    $this->page->title = $location['name'];
+    $this->page->meta_title = $location['name'] . ' — Гумно Охрид';
+    $this->page->meta_description = $location['description'] . ' ' . $location['address'];
+}
+==
+<section class="page-hero page-hero--image" style="--hero-image:url('{{ 'assets/images/gumno-rasanec.webp'|theme }}')">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Малопродажба</p>
+        <h1>{{ location.name }}</h1>
+        <p class="lede">{{ location.description }}</p>
+    </div>
+</section>
+<section class="section">
+    <div class="shell location-detail">
+        <div class="location-detail__map" data-animate="fade-up">
+            <div class="map-embed">
+                {% partial 'site/map-embed' src=location.map title=(location.name ~ ' на Google Maps') %}
+            </div>
+        </div>
+        <div class="location-detail__copy" data-animate="fade-up">
+            <p class="eyebrow">Посетете нѐ</p>
+            <h2>{{ location.name }}</h2>
+            <p class="contact-line">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+                <span>{{ location.address }}</span>
+            </p>
+            <p class="contact-line">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+                <a href="tel:{{ location.phone_link }}">{{ location.phone }}</a>
+            </p>
+            <div class="product-detail__actions">
+                <a class="btn btn--ghost" href="{{ 'maloprodazba'|page }}">Сите продажни места</a>
+            </div>
+        </div>
+    </div>
+</section>

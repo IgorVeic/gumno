@@ -1,0 +1,33 @@
+---
+description: Keep PageSpeed Insights all-green for Gumno theme work
+alwaysApply: true
+---
+
+# PageSpeed Insights — all categories green
+
+Every frontend change for Gumno must keep **PageSpeed Insights** green for:
+
+- Performance
+- Accessibility
+- Best Practices
+- SEO
+
+Check mobile and desktop after meaningful theme/layout/asset changes.
+
+## Hard rules
+
+- Prefer self-hosted fonts, CSS, JS, and images. No new third-party scripts, fonts, tag managers, or chat widgets unless the user explicitly asks.
+- Load heavy libraries only where needed (e.g. October `{% framework extras %}` only on pages that need AJAX forms).
+- Use `defer` or `type="module"` for non-critical JS. Never block first paint with unused JS.
+- Keep LCP candidates light: preload only the true LCP asset; give it width/height; avoid animating opacity/transform on LCP elements.
+- Avoid CLS: reserve space for images/embeds (`width`/`height` or aspect-ratio); do not start key UI at `opacity: 0` without a no-JS/`prefers-reduced-motion` fallback.
+- Lazy-load below-the-fold images and iframes (`loading="lazy"`). Keep map embeds in reserved aspect-ratio boxes so they do not cause CLS.
+- Compress/optimize images before adding them; prefer modern formats when practical; do not ship oversized assets.
+- Respect `prefers-reduced-motion`.
+- Keep accessibility: real labels, focus styles, contrast, semantic headings, meaningful `alt` text.
+- SEO: unique titles/meta descriptions, crawlable links, valid language (`lang`), sensible heading order.
+
+## When changing the theme
+
+Ask: does this add network weight, main-thread work, layout shift, or a third-party origin?
+If yes, mitigate or do not ship it.

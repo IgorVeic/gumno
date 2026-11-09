@@ -1,0 +1,28 @@
+url = "/proizvodstvo/fiting-za-kanalizacija"
+layout = "default"
+title = "Фитинг за канализација"
+meta_title = "Фитинг за канализација — Гумно производство"
+meta_description = "Гумно производство на фитинг за канализација: спојки, колена, редуцири и останати елементи за сигурни системи."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $items = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    $this['products'] = array_values(array_filter($items, function ($item) {
+        return in_array('Фитинг канализација', $item['categories'] ?? [], true);
+    }));
+}
+==
+<section class="page-hero page-hero--image" style="--hero-image:url('{{ 'assets/images/fiting-gumno.webp'|theme }}')">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Гумно производство</p>
+        <h1>Фитинг за канализација</h1>
+        <p class="lede">Спојки, колена, редуцири и останати елементи произведени за сигурно поврзување.</p>
+    </div>
+</section>
+<section class="section catalog-section">
+    <div class="shell">
+        <a class="back-link" href="{{ 'proizvodstvo'|page }}">← Назад кон производство</a>
+        {% partial 'catalog/product-grid' products=products %}
+    </div>
+</section>

@@ -1,0 +1,24 @@
+url = "/404"
+layout = "default"
+title = "Страницата не е пронајдена"
+meta_title = "404 — Гумно"
+meta_description = "Бараната страница не постои."
+==
+<section class="error-page" aria-labelledby="error-title">
+    <div class="shell error-page__inner">
+        <p class="error-page__code" aria-hidden="true">404</p>
+        <p class="eyebrow">Грешка</p>
+        <h1 id="error-title">Страницата не е пронајдена</h1>
+        <p class="lede">Линкот е погрешен или страницата е преместена. Изберете каде сакате да продолжите.</p>
+        <div class="error-page__actions">
+            <a class="btn" href="{{ 'home'|page }}">Назад на почетна</a>
+            <a class="btn btn--ghost" href="{{ 'kontakt'|page }}">Контакт</a>
+        </div>
+        <nav class="error-page__links" aria-label="Корисни линкови">
+            <a href="{{ 'proizvodstvo'|page }}">Производство</a>
+            <a href="{{ 'brendovi'|page }}">Брендови</a>
+            <a href="{{ 'maloprodazba'|page }}">Малопродажба</a>
+            <a href="{{ 'za-nas'|page }}">За нас</a>
+        </nav>
+    </div>
+</section>

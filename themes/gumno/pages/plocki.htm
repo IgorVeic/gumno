@@ -1,0 +1,33 @@
+url = "/plocki"
+layout = "default"
+title = "Плочки"
+meta_title = "Керамички плочки — Гумно Охрид"
+meta_description = "Керамички плочки и комплетни решенија за уредување бањи во продажните салони на Гумно Охрид."
+==
+function onStart()
+{
+    $path = themes_path('gumno/assets/data/products.json');
+    $items = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+    $this['products'] = array_values(array_filter($items, fn($item) => in_array('plocki', $item['groups'] ?? [], true)));
+}
+==
+<section class="page-hero page-hero--image" style="--hero-image:url('{{ 'assets/images/gumno-rasanec.webp'|theme }}')">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Категорија</p>
+        <h1>Керамички плочки</h1>
+        <p class="lede">Избор на плочки и комплетна санитарна програма за хармонично уредување на домот.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="shell editorial-card" data-animate="fade-up">
+        <div>
+            <p class="eyebrow">Посетете нè</p>
+            <h2>Погледнете ја актуелната понуда во салонот</h2>
+            <p>Колекциите на плочки се менуваат сезонски. Нашиот тим ќе ви помогне да изберете димензии, бои и санитарна опрема што се вклопуваат во вашиот простор.</p>
+            <div class="product-detail__actions">
+                <a class="btn" href="{{ 'maloprodazba'|page }}">Продажни места</a>
+            </div>
+        </div>
+        <img src="{{ 'assets/images/gumno-rasanec.webp'|theme }}" width="800" height="520" alt="Продажен салон Гумно" loading="lazy" decoding="async">
+    </div>
+</section>

@@ -1,0 +1,55 @@
+url = "/brendovi"
+layout = "default"
+title = "Брендови"
+meta_title = "Брендови — Гумно Охрид"
+meta_description = "Гумно е застапник за Македонија за Cersanit, Marbomil, HP Trend, Dianflex, Komak, Zenner и други санитарни брендови."
+==
+<section class="page-hero page-hero--soft">
+    <div class="shell page-hero__content" data-animate="fade-up">
+        <p class="eyebrow">Партнери</p>
+        <h1>Брендови</h1>
+        <p class="lede">Застапник за Македонија за водечки брендови од санитарна опрема и цевки.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell">
+        <div class="section-head" data-animate="fade-up">
+            <div>
+                <h2 class="section-head__title">Официјална дистрибуција</h2>
+                <p class="section-head__text">Изберете бренд за повеќе информации и достапни производи.</p>
+            </div>
+        </div>
+
+        <div class="brand-wall">
+            {% set brands = [
+                { name: 'Dianflex', image: 'dianflex.webp', slug: 'dianflex' },
+                { name: 'CIMOS Титан', image: 'cimos-titan.webp', slug: 'cimos-titan' },
+                { name: 'KOMAK', image: 'komak.webp', slug: 'komak' },
+                { name: 'HP Trend', image: 'hp-trend.webp', slug: 'hp-trend' },
+                { name: 'MARBOMIL', image: 'marbomil-serbia.webp', slug: 'marbomil' },
+                { name: 'CERSANIT', image: 'cersanit.webp', slug: 'cersanit' },
+                { name: 'Euroser', image: 'euroser.webp', slug: 'euroser' },
+                { name: 'IZOTERM', image: 'izoterm.webp', slug: 'izoterm' },
+                { name: 'ZENNER', image: 'zenner.webp', slug: 'zenner' },
+                { name: 'IVANIĆPLAST', image: 'ivanicplast.webp', slug: 'ivanicplast' }
+            ] %}
+
+            {% for brand in brands %}
+            <a class="brand-logo" href="{{ 'brend'|page({ slug: brand.slug }) }}" data-animate="fade-up">
+                <span class="brand-logo__mark">
+                    <img
+                        src="{{ ('assets/images/' ~ brand.image)|theme }}"
+                        width="180"
+                        height="72"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </span>
+                <span class="brand-logo__name">{{ brand.name }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>

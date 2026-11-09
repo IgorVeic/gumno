@@ -1,0 +1,11 @@
+description = "Always-visible Google Maps embed"
+==
+{% set mapSrc = src|default('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23629.920338496893!2d20.806212609980562!3d41.1432759743715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA4JzM1LjgiTiAyMMKwNDknMjUuNCJF!5e1!3m2!1sen!2s!4v1475001972667') %}
+{% set mapTitle = title|default('Гумно Охрид на Google Maps') %}
+<iframe
+    title="{{ mapTitle }}"
+    src="{{ mapSrc }}"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+></iframe>

@@ -1,0 +1,41 @@
+{% if products|length %}
+<div class="catalog-grid">
+    {% for product in products %}
+    <article class="catalog-card" data-animate="fade-up">
+        <a class="catalog-card__hit" href="{{ 'proizvod'|page({ slug: product.slug }) }}">
+            <span class="catalog-card__media" aria-hidden="true">
+                {% if product.image %}
+                <img
+                    src="{{ ('assets/images/' ~ product.image)|theme }}"
+                    width="{{ product.width }}"
+                    height="{{ product.height }}"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                >
+                {% else %}
+                <span class="catalog-card__fallback">{{ product.title|slice(0, 1) }}</span>
+                {% endif %}
+            </span>
+            <span class="catalog-card__body">
+                {% if product.categories|length %}
+                <span class="catalog-card__category">{{ product.categories|first }}</span>
+                {% endif %}
+                <span class="catalog-card__title">{{ product.title }}</span>
+                {% set blurb = product.description|striptags %}
+                {% if blurb %}
+                <span class="catalog-card__text">{{ blurb|slice(0, 110) }}{% if blurb|length > 110 %}…{% endif %}</span>
+                {% endif %}
+                <span class="catalog-card__cta">Дознај повеќе <span aria-hidden="true">→</span></span>
+            </span>
+        </a>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <h2>Наскоро повеќе производи</h2>
+    <p>Контактирајте нѐ за информации за актуелната понуда.</p>
+    <a class="btn" href="{{ 'kontakt'|page }}">Контакт</a>
+</div>
+{% endif %}
