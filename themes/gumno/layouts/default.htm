@@ -12,7 +12,7 @@ description = "Default site layout"
     <link rel="preload" href="{{ 'assets/images/logo-gumno.png'|theme }}" as="image">
     {% endif %}
     <link rel="stylesheet" href="{{ 'assets/fonts/fonts.css'|theme }}">
-    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=30">
+    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=33">
     {% styles %}
 </head>
 <body class="page-{{ this.page.id }}">
@@ -35,7 +35,7 @@ description = "Default site layout"
     <script defer src="{{ 'assets/js/vendor/gsap.min.js'|theme }}"></script>
     <script defer src="{{ 'assets/js/vendor/ScrollTrigger.min.js'|theme }}"></script>
     {% endif %}
-    <script defer src="{{ 'assets/js/theme.js'|theme }}?v=14"></script>
+    <script defer src="{{ 'assets/js/theme.js'|theme }}?v=16"></script>
     {% if this.page.id == 'kontakt' %}
         {% framework extras %}
     {% endif %}
