@@ -5,8 +5,19 @@ title = "Redirect"
 function onStart()
 {
     $slug = rawurldecode((string) $this->param('slug'));
-    if ($slug === 'производи') {
-        return Redirect::to('/proizvodi', 301);
+
+    $pageAliases = [
+        'производи' => '/proizvodi',
+        'брендови' => '/brendovi',
+        'нови-производи' => '/proizvodi',
+        'sample-page' => '/',
+        'doma' => '/',
+        'intro' => '/',
+        'home' => '/',
+    ];
+
+    if (isset($pageAliases[$slug])) {
+        return Redirect::to($pageAliases[$slug], 301);
     }
 
     $path = themes_path('gumno/assets/data/products.json');

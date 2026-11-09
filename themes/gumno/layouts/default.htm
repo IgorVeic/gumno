@@ -12,10 +12,10 @@ description = "Default site layout"
     <link rel="preload" href="{{ 'assets/images/logo-gumno.png'|theme }}" as="image">
     {% endif %}
     <link rel="stylesheet" href="{{ 'assets/fonts/fonts.css'|theme }}">
-    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=33">
+    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=45">
     {% styles %}
 </head>
-<body class="page-{{ this.page.id }}">
+<body class="page-{{ this.page.id|replace({'/': '-'}) }}">
     <a class="skip-link" href="#main">Прескокни на содржина</a>
     {% if this.page.id != 'home' %}
         {% partial 'site/header' %}
@@ -38,9 +38,11 @@ description = "Default site layout"
     <script defer src="{{ 'assets/js/theme.js'|theme }}?v=16"></script>
     {% if this.page.id == 'kontakt' %}
         {% framework extras %}
+        <script src="{{ url('modules/system/assets/js/vendor/jquery.min.js') }}"></script>
     {% endif %}
     {% scripts %}
     {% if this.page.id == 'kontakt' %}
+    <script defer src="{{ 'assets/js/contact-form.js'|theme }}?v=4"></script>
     <script defer src="{{ 'assets/js/recaptcha-init.js'|theme }}?v=2"></script>
     {% endif %}
 </body>

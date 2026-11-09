@@ -16,10 +16,10 @@ description = "Site header"
         <nav id="site-nav" class="site-nav site-nav--desktop" aria-label="Главна навигација">
             <div class="site-nav__links">
                 <a href="{{ 'home'|page }}" class="{{ this.page.id == 'home' ? 'is-active' }}">Почетна</a>
-                <a href="{{ 'proizvodstvo'|page }}" class="{{ this.page.id == 'proizvodstvo' ? 'is-active' }}">Производство</a>
-                <a href="{{ 'proizvodi'|page }}" class="{{ this.page.id == 'proizvodi' ? 'is-active' }}">Каталог</a>
-                <a href="{{ 'brendovi'|page }}" class="{{ this.page.id == 'brendovi' ? 'is-active' }}">Брендови</a>
-                <a href="{{ 'maloprodazba'|page }}" class="{{ this.page.id == 'maloprodazba' ? 'is-active' }}">Малопродажба</a>
+                <a href="{{ 'proizvodstvo/index'|page }}" class="{{ this.page.id starts with 'proizvodstvo/' ? 'is-active' }}">Производство</a>
+                <a href="{{ 'katalog/index'|page }}" class="{{ this.page.id starts with 'katalog/' ? 'is-active' }}">Каталог</a>
+                <a href="{{ 'brendovi/index'|page }}" class="{{ this.page.id starts with 'brendovi/' ? 'is-active' }}">Брендови</a>
+                <a href="{{ 'maloprodazba/index'|page }}" class="{{ this.page.id starts with 'maloprodazba/' ? 'is-active' }}">Малопродажба</a>
                 <a href="{{ 'za-nas'|page }}" class="{{ this.page.id == 'za-nas' ? 'is-active' }}">За нас</a>
                 <a href="{{ 'kontakt'|page }}" class="{{ this.page.id == 'kontakt' ? 'is-active' }} site-nav__cta">Контакт</a>
             </div>
@@ -34,10 +34,10 @@ description = "Site header"
         </div>
         <div class="site-nav__links">
             <a href="{{ 'home'|page }}" class="{{ this.page.id == 'home' ? 'is-active' }}">Почетна</a>
-            <a href="{{ 'proizvodstvo'|page }}" class="{{ this.page.id == 'proizvodstvo' ? 'is-active' }}">Производство</a>
-            <a href="{{ 'proizvodi'|page }}" class="{{ this.page.id == 'proizvodi' ? 'is-active' }}">Каталог</a>
-            <a href="{{ 'brendovi'|page }}" class="{{ this.page.id == 'brendovi' ? 'is-active' }}">Брендови</a>
-            <a href="{{ 'maloprodazba'|page }}" class="{{ this.page.id == 'maloprodazba' ? 'is-active' }}">Малопродажба</a>
+            <a href="{{ 'proizvodstvo/index'|page }}" class="{{ this.page.id starts with 'proizvodstvo/' ? 'is-active' }}">Производство</a>
+            <a href="{{ 'katalog/index'|page }}" class="{{ this.page.id starts with 'katalog/' ? 'is-active' }}">Каталог</a>
+            <a href="{{ 'brendovi/index'|page }}" class="{{ this.page.id starts with 'brendovi/' ? 'is-active' }}">Брендови</a>
+            <a href="{{ 'maloprodazba/index'|page }}" class="{{ this.page.id starts with 'maloprodazba/' ? 'is-active' }}">Малопродажба</a>
             <a href="{{ 'za-nas'|page }}" class="{{ this.page.id == 'za-nas' ? 'is-active' }}">За нас</a>
             <a href="{{ 'kontakt'|page }}" class="{{ this.page.id == 'kontakt' ? 'is-active' }} site-nav__cta">Контакт</a>
         </div>

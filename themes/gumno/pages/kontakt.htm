@@ -10,61 +10,84 @@ rules[name] = "required"
 rules[email] = "required|email"
 rules[subject] = "required"
 rules[message] = "required"
+rules_messages[required] = "Ова поле е задолжително."
+rules_messages[email] = "Внесете валидна е-маил адреса."
 messages_success = "Ви благодариме! Вашата порака е испратена."
 messages_errors = "Има грешка во формуларот. Проверете ги полињата."
+messages_partial = "genericForm/flash"
+inline_errors = "display"
 mail_enabled = 1
 mail_subject = "Контакт форма — Гумно"
-mail_recipients[info@gumno.com.mk] = "Gumno"
+mail_recipients[igorveic7@gmail.com] = "Igor (test)"
 recaptcha_enabled = 1
 reset_form = 1
+mail_replyto = "email"
 ==
 <section class="page-hero page-hero--soft">
     <div class="shell page-hero__content" data-animate="fade-up">
         <p class="eyebrow">Контакт</p>
         <h1>Стапете во контакт со нас</h1>
-        <p class="lede">Испратете порака или јавете се директно на нашите телефонски линии.</p>
+        <p class="lede">Испратете порака или јавете се директно — одговараме во текот на работниот ден.</p>
     </div>
 </section>
 
-<section class="section">
+<section class="section section--contact">
     <div class="shell contact">
-        {% component 'contactForm' %}
+        <div class="contact-panel" data-animate="fade-up">
+            <div class="contact-panel__intro">
+                <p class="eyebrow">Порака</p>
+                <h2 class="contact-panel__title">Напишете ни порака</h2>
+                <p class="contact-panel__text">Пополнете го формуларот и ќе ве контактираме наскоро.</p>
+            </div>
+            {% component 'contactForm' %}
+        </div>
 
         <aside class="contact-aside" data-animate="fade-up">
-            <h2>Главен салон за санитарија</h2>
-            <p class="contact-line">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-                <span>{{ this.theme.address_hq|default('ул. Рашанец б.б. с. Лескоец, Охрид') }}</span>
-            </p>
-            <p class="contact-line">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
-                <a href="tel:+38970225587">{{ this.theme.phone_main|default('070 225 587') }}</a>
-            </p>
-
-            <h2>Железарија</h2>
-            <p class="contact-line">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-                <span>{{ this.theme.address_hardware|default('7-ми Ноември 183, Охрид') }}</span>
-            </p>
-            <p class="contact-line">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
-                <a href="tel:+38975355347">{{ this.theme.phone_hardware|default('075 355 347') }}</a>
-            </p>
-
-            <h2>Останати телефони</h2>
-            <ul class="contact-lines">
-                <li class="contact-line">
+            <div class="contact-block">
+                <p class="contact-block__label">Главен салон</p>
+                <h2 class="contact-block__title">Салон за санитарија</h2>
+                <p class="contact-line">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+                    <span>{{ this.theme.address_hq|default('ул. Рашанец б.б. с. Лескоец, Охрид') }}</span>
+                </p>
+                <a class="contact-chip" href="tel:+38970225587">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
-                    <span>Комерција: <a href="tel:+38970204624">{{ this.theme.phone_commerce|default('070 204 624') }}</a></span>
-                </li>
-                <li class="contact-line">
+                    {{ this.theme.phone_main|default('070 225 587') }}
+                </a>
+            </div>
+
+            <div class="contact-block">
+                <p class="contact-block__label">Железарија</p>
+                <h2 class="contact-block__title">Продавница во Охрид</h2>
+                <p class="contact-line">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+                    <span>{{ this.theme.address_hardware|default('7-ми Ноември 183, Охрид') }}</span>
+                </p>
+                <a class="contact-chip" href="tel:+38975355347">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
-                    <span>Сметководство: <a href="tel:+38972302809">{{ this.theme.phone_accounting|default('072 302 809') }}</a></span>
-                </li>
-            </ul>
+                    {{ this.theme.phone_hardware|default('075 355 347') }}
+                </a>
+            </div>
+
+            <div class="contact-block">
+                <ul class="contact-lines">
+                    <li class="contact-line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+                        <span>Комерција: <a href="tel:+38970204624">{{ this.theme.phone_commerce|default('070 204 624') }}</a></span>
+                    </li>
+                    <li class="contact-line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+                        <span>Сметководство: <a href="tel:+38972302809">{{ this.theme.phone_accounting|default('072 302 809') }}</a></span>
+                    </li>
+                    <li class="contact-line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+                        <span><a href="mailto:{{ this.theme.email|default('info@gumno.com.mk') }}">{{ this.theme.email|default('info@gumno.com.mk') }}</a></span>
+                    </li>
+                </ul>
+            </div>
 
             <div class="contact-aside__map">
-                <h2>Локација</h2>
+                <h2 class="contact-block__title">Каде да нѐ најдете</h2>
                 <div class="map-embed">
                     {% partial 'site/map-embed' %}
                 </div>

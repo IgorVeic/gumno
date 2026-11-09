@@ -8,13 +8,13 @@ description = "SEO meta, Open Graph, and JSON-LD"
 {% endif %}
 {% set absoluteUrl = url(path) %}
 {% set ogImagePath = 'assets/images/logo-gumno.png'|theme %}
-{% if this.page.id == 'proizvod' and product.image is defined and product.image %}
+{% if this.page.id == 'katalog/proizvod' and product.image is defined and product.image %}
     {% set ogImagePath = ('assets/images/' ~ product.image)|theme %}
 {% elseif this.page.id == 'za-nas' %}
     {% set ogImagePath = 'assets/images/gumno-sediste.webp'|theme %}
-{% elseif this.page.id == 'maloprodazba' or this.page.id == 'prodazen-salon' %}
+{% elseif this.page.id starts with 'maloprodazba/' %}
     {% set ogImagePath = 'assets/images/gumno-rasanec.webp'|theme %}
-{% elseif this.page.id == 'proizvodstvo' %}
+{% elseif this.page.id starts with 'proizvodstvo/' %}
     {% set ogImagePath = 'assets/images/gumno-cover-paralax.webp'|theme %}
 {% endif %}
 {% set absoluteImage = url(ogImagePath) %}
@@ -65,7 +65,7 @@ description = "SEO meta, Open Graph, and JSON-LD"
   }
 }
 </script>
-{% if this.page.id == 'proizvod' and product is defined and product %}
+{% if this.page.id == 'katalog/proizvod' and product is defined and product %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

@@ -2,7 +2,7 @@
 <div class="catalog-grid">
     {% for product in products %}
     <article class="catalog-card" data-animate="fade-up">
-        <a class="catalog-card__hit" href="{{ 'proizvod'|page({ slug: product.slug }) }}">
+        <a class="catalog-card__hit" href="{{ 'katalog/proizvod'|page({ slug: product.slug }) }}">
             <span class="catalog-card__media" aria-hidden="true">
                 {% if product.image %}
                 <img

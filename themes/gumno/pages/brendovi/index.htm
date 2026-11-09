@@ -36,7 +36,7 @@ meta_description = "Гумно е застапник за Македонија �
             ] %}
 
             {% for brand in brands %}
-            <a class="brand-logo" href="{{ 'brend'|page({ slug: brand.slug }) }}" data-animate="fade-up">
+            <a class="brand-logo" href="{{ 'brendovi/brend'|page({ slug: brand.slug }) }}" data-animate="fade-up">
                 <span class="brand-logo__mark">
                     <img
                         src="{{ ('assets/images/' ~ brand.image)|theme }}"
