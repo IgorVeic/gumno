@@ -100,17 +100,29 @@ $products = is_file($productsPath)
     ? (json_decode((string) file_get_contents($productsPath), true) ?: [])
     : [];
 
+$slugLookup = [];
 foreach ($products as $product) {
     $slug = rawurldecode((string) ($product['slug'] ?? ''));
     if ($slug === '') {
         continue;
     }
+    $slugLookup[$slug] = $slug;
     gumnoAddRedirect(
         $bucket,
         '/' . $slug,
         '/proizvod/' . $slug,
         'WP product post'
     );
+    $legacy = rawurldecode((string) ($product['legacy_slug'] ?? ''));
+    if ($legacy !== '' && $legacy !== $slug) {
+        $slugLookup[$legacy] = $slug;
+        gumnoAddRedirect(
+            $bucket,
+            '/' . $legacy,
+            '/proizvod/' . $slug,
+            'WP product post'
+        );
+    }
 }
 
 // Also include WP link paths in case slug encoding differs.
@@ -127,7 +139,9 @@ if (is_file($postsPath)) {
         if ($slug === '/' || str_starts_with($slug, '/category/') || str_starts_with($slug, '/proizvod/')) {
             continue;
         }
-        gumnoAddRedirect($bucket, $slug, '/proizvod' . $slug, 'WP product link');
+        $leaf = rawurldecode(ltrim($slug, '/'));
+        $target = '/proizvod/' . ($slugLookup[$leaf] ?? $leaf);
+        gumnoAddRedirect($bucket, $slug, $target, 'WP product link');
     }
 }
 

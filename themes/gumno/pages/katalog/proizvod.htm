@@ -20,6 +20,12 @@ function onStart()
             return;
         }
     }
+    foreach ($products as $product) {
+        $legacy = (string) ($product['legacy_slug'] ?? '');
+        if ($legacy !== '' && $legacy === $slug && !empty($product['slug'])) {
+            return \Redirect::to('/proizvod/' . rawurlencode($product['slug']), 301);
+        }
+    }
     return \Response::make($this->controller->run('404'), 404);
 }
 ==

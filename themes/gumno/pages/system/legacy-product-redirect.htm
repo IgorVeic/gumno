@@ -23,8 +23,10 @@ function onStart()
     $path = themes_path('gumno/assets/data/products.json');
     $products = is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
     foreach ($products as $product) {
-        if (($product['slug'] ?? '') === $slug) {
-            return Redirect::to('/proizvod/' . rawurlencode($slug), 301);
+        $current = (string) ($product['slug'] ?? '');
+        $legacy = (string) ($product['legacy_slug'] ?? '');
+        if ($current !== '' && ($current === $slug || $legacy === $slug)) {
+            return Redirect::to('/proizvod/' . rawurlencode($current), 301);
         }
     }
 
