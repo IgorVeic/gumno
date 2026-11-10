@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 Disallow: /admin
+Disallow: /admin_gumno
 Disallow: /backend
 
 Sitemap: https://gumno.com.mk/sitemap.xml
