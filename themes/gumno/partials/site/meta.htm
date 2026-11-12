@@ -25,14 +25,20 @@ description = "SEO meta, Open Graph, and JSON-LD"
 
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ pageDescription|e('html_attr') }}">
+{% if this.page.id == '404' %}
+<meta name="robots" content="noindex, follow">
+{% else %}
 <link rel="canonical" href="{{ absoluteUrl }}">
+{% endif %}
 
 <meta property="og:locale" content="mk_MK">
 <meta property="og:type" content="{{ this.page.id == 'home' ? 'website' : 'article' }}">
 <meta property="og:site_name" content="Гумно Охрид">
 <meta property="og:title" content="{{ pageTitle|e('html_attr') }}">
 <meta property="og:description" content="{{ pageDescription|e('html_attr') }}">
+{% if this.page.id != '404' %}
 <meta property="og:url" content="{{ absoluteUrl }}">
+{% endif %}
 <meta property="og:image" content="{{ absoluteImage }}">
 
 <meta name="twitter:card" content="summary_large_image">
