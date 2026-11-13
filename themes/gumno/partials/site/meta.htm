@@ -7,17 +7,7 @@ description = "SEO meta, Open Graph, and JSON-LD"
     {% set path = path|replace({':slug': this.param('slug')}) %}
 {% endif %}
 {% set absoluteUrl = url(path) %}
-{% set ogImagePath = 'assets/images/logo-gumno.png'|theme %}
-{% if this.page.id == 'katalog-proizvod' and product.image is defined and product.image %}
-    {% set ogImagePath = ('assets/images/' ~ product.image)|theme %}
-{% elseif this.page.id == 'za-nas' %}
-    {% set ogImagePath = 'assets/images/gumno-sediste.webp'|theme %}
-{% elseif this.page.id starts with 'maloprodazba-' %}
-    {% set ogImagePath = 'assets/images/gumno-rasanec.webp'|theme %}
-{% elseif this.page.id starts with 'proizvodstvo-' %}
-    {% set ogImagePath = 'assets/images/gumno-cover-paralax.webp'|theme %}
-{% endif %}
-{% set absoluteImage = url(ogImagePath) %}
+{% set absoluteImage = url('assets/images/LogoGumno.png'|theme) %}
 {% set phoneMain = this.theme.phone_main|default('070 225 587') %}
 {% set email = this.theme.email|default('info@gumno.com.mk') %}
 {% set addressHq = this.theme.address_hq|default('ул. Рашанец б.б. с. Лескоец, Охрид') %}
@@ -52,7 +42,7 @@ description = "SEO meta, Open Graph, and JSON-LD"
   "@type": ["Organization", "LocalBusiness"],
   "name": "Гумно Охрид",
   "url": "{{ url('/') }}",
-  "logo": "{{ url('assets/images/logo-gumno.png'|theme) }}",
+  "logo": "{{ absoluteImage }}",
   "image": "{{ absoluteImage }}",
   "email": "{{ email }}",
   "telephone": "{{ phoneMain }}",
