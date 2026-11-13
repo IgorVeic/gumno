@@ -7,7 +7,8 @@ description = "SEO meta, Open Graph, and JSON-LD"
     {% set path = path|replace({':slug': this.param('slug')}) %}
 {% endif %}
 {% set absoluteUrl = url(path) %}
-{% set absoluteImage = url('assets/images/LogoGumno.png'|theme) %}
+{% set absoluteImage = url('assets/images/og-gumno.jpg'|theme) ~ '?v=2' %}
+{% set logoImage = url('assets/images/LogoGumno.png'|theme) %}
 {% set phoneMain = this.theme.phone_main|default('070 225 587') %}
 {% set email = this.theme.email|default('info@gumno.com.mk') %}
 {% set addressHq = this.theme.address_hq|default('ул. Рашанец б.б. с. Лескоец, Охрид') %}
@@ -30,6 +31,11 @@ description = "SEO meta, Open Graph, and JSON-LD"
 <meta property="og:url" content="{{ absoluteUrl }}">
 {% endif %}
 <meta property="og:image" content="{{ absoluteImage }}">
+<meta property="og:image:secure_url" content="{{ absoluteImage }}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Гумно Охрид">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ pageTitle|e('html_attr') }}">
@@ -42,7 +48,7 @@ description = "SEO meta, Open Graph, and JSON-LD"
   "@type": ["Organization", "LocalBusiness"],
   "name": "Гумно Охрид",
   "url": "{{ url('/') }}",
-  "logo": "{{ absoluteImage }}",
+  "logo": "{{ logoImage }}",
   "image": "{{ absoluteImage }}",
   "email": "{{ email }}",
   "telephone": "{{ phoneMain }}",
