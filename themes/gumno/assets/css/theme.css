@@ -20,8 +20,8 @@
   --radius: 18px;
   --radius-sm: 12px;
   --radius-lg: 24px;
-  --font-sans: "Manrope", "Segoe UI", sans-serif;
-  --font-display: "Source Serif 4", Georgia, serif;
+  --font-sans: "Manrope", "Manrope Fallback", "Segoe UI", sans-serif;
+  --font-display: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
   --shell: min(1160px, calc(100% - 2rem));
   --header-h: 74px;
   --section-gap: 2rem;
@@ -38,7 +38,51 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: #f3f9fd;
+}
+
+/* Georgia Bold is wider than Source Serif 4, so headings wrap for a moment
+   before the webfont loads. Scale the fallback to the webfont's width. */
+@font-face {
+  font-family: "Source Serif Fallback";
+  src: local("Georgia Bold");
+  font-weight: 600 900;
+  font-style: normal;
+  size-adjust: 88%;
+  ascent-override: 125%;
+  descent-override: 32%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Segoe UI");
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 102.5%;
+}
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Segoe UI Semibold");
+  font-weight: 600;
+  font-style: normal;
+  size-adjust: 102.8%;
+}
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Segoe UI Bold");
+  font-weight: 700;
+  font-style: normal;
+  size-adjust: 100.6%;
+}
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Segoe UI Black");
+  font-weight: 800;
+  font-style: normal;
+  size-adjust: 97.5%;
+}
 
 body {
   display: flex;
@@ -313,6 +357,7 @@ body.nav-open .site-header {
 }
 
 /* Portal home */
+html:has(body.page-home),
 .page-home {
   background: #063a5c;
 }
@@ -426,6 +471,7 @@ body.nav-open .site-header {
   filter: drop-shadow(0 22px 36px rgba(4, 48, 79, 0.35));
 }
 .portal__title {
+  font-family: var(--font-sans);
   font-size: clamp(3.4rem, 11vw, 5.8rem);
   color: var(--white);
   margin: 0;

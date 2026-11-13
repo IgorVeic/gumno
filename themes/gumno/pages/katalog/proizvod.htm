@@ -29,6 +29,11 @@ function onStart()
     return \Response::make($this->controller->run('404'), 404);
 }
 ==
+{% if product.image %}
+{% put styles %}
+<link rel="preload" href="{{ ('assets/images/' ~ product.image)|theme }}" as="image" fetchpriority="high">
+{% endput %}
+{% endif %}
 <section class="section product-page">
     <div class="shell">
         <nav class="product-breadcrumb" aria-label="Патека">
@@ -49,7 +54,8 @@ function onStart()
                     width="{{ product.width }}"
                     height="{{ product.height }}"
                     alt="{{ product.title }}"
-                    decoding="async"
+                    fetchpriority="high"
+                    decoding="sync"
                 >
                 {% else %}
                 <span class="catalog-card__fallback" aria-hidden="true">{{ product.title|slice(0, 1) }}</span>

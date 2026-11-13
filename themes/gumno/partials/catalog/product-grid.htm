@@ -10,8 +10,8 @@
                     width="{{ product.width }}"
                     height="{{ product.height }}"
                     alt=""
-                    loading="lazy"
-                    decoding="async"
+                    loading="{{ loop.index < 5 ? 'eager' : 'lazy' }}"
+                    decoding="{{ loop.index < 5 ? 'sync' : 'async' }}"
                 >
                 {% else %}
                 <span class="catalog-card__fallback">{{ product.title|slice(0, 1) }}</span>

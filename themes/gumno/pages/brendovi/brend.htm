@@ -59,6 +59,9 @@ function onStart()
     $this->page->meta_description = mb_substr($brand['copy'], 0, 158);
 }
 ==
+{% put styles %}
+<link rel="preload" href="{{ ('assets/images/' ~ brand.image)|theme }}" as="image" fetchpriority="high">
+{% endput %}
 <section class="page-hero page-hero--image brand-hero" style="--hero-image:url('{{ ('assets/images/' ~ brand.image)|theme }}')">
     <div class="shell page-hero__content" data-animate="fade-up">
         <p class="eyebrow">Наши партнери</p>

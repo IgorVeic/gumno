@@ -8,11 +8,32 @@ description = "Default site layout"
     {% partial 'site/meta' %}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32.png'|theme }}">
     <link rel="apple-touch-icon" href="{{ 'assets/images/favicon-180.png'|theme }}">
+    <link rel="preload" href="{{ 'assets/fonts/manrope-0.woff2'|theme }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'assets/fonts/manrope-2.woff2'|theme }}" as="font" type="font/woff2" crossorigin>
     {% if this.page.id == 'home' %}
-    <link rel="preload" href="{{ 'assets/images/logo-gumno.png'|theme }}" as="image">
+    <link rel="preload" href="{{ 'assets/images/logo-gumno.png'|theme }}" as="image" fetchpriority="high">
+    {% else %}
+    <link rel="preload" href="{{ 'assets/fonts/sourceserif4-11.woff2'|theme }}" as="font" type="font/woff2" crossorigin>
     {% endif %}
-    <link rel="stylesheet" href="{{ 'assets/fonts/fonts.css'|theme }}">
-    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=47">
+    {% if this.page.id == 'proizvodstvo-index' %}
+    <link rel="preload" href="{{ 'assets/images/gumno-cover-paralax.webp'|theme }}" as="image" fetchpriority="high">
+    {% elseif this.page.id == 'proizvodstvo-fiting-za-kanalizacija' %}
+    <link rel="preload" href="{{ 'assets/images/fiting-gumno.webp'|theme }}" as="image" fetchpriority="high">
+    {% elseif this.page.id == 'proizvodstvo-kapaci-za-sholja' %}
+    <link rel="preload" href="{{ 'assets/images/kapak-sholja-products.webp'|theme }}" as="image" fetchpriority="high">
+    {% elseif this.page.id == 'maloprodazba-prodazen-salon' or this.page.id == 'katalog-plocki' %}
+    <link rel="preload" href="{{ 'assets/images/gumno-rasanec.webp'|theme }}" as="image" fetchpriority="high">
+    {% endif %}
+    <link rel="stylesheet" href="{{ 'assets/fonts/fonts.css'|theme }}?v=3">
+    <link rel="stylesheet" href="{{ 'assets/css/theme.css'|theme }}?v=50">
+    <script type="speculationrules">
+    {
+      "prefetch": [{
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }]
+    }
+    </script>
     {% styles %}
 </head>
 <body class="page-{{ this.page.id|replace({'/': '-'}) }}">
@@ -29,13 +50,7 @@ description = "Default site layout"
     {% if this.page.id != 'home' and this.page.id != '404' and this.page.id != 'kontakt' %}
         {% partial 'site/mobile-cta' %}
     {% endif %}
-    {% if this.page.id == 'home' %}
-    <script defer src="{{ 'assets/js/vendor/gsap.min.js'|theme }}"></script>
-    {% elseif this.page.id != '404' %}
-    <script defer src="{{ 'assets/js/vendor/gsap.min.js'|theme }}"></script>
-    <script defer src="{{ 'assets/js/vendor/ScrollTrigger.min.js'|theme }}"></script>
-    {% endif %}
-    <script defer src="{{ 'assets/js/theme.js'|theme }}?v=16"></script>
+    <script defer src="{{ 'assets/js/theme.js'|theme }}?v=17"></script>
     {% if this.page.id == 'kontakt' %}
         {% framework extras %}
         <script src="{{ url('modules/system/assets/js/vendor/jquery.min.js') }}"></script>
