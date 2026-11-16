@@ -34,7 +34,7 @@ function onStart()
     ];
     $slug = (string) $this->param('slug');
     if (!isset($locations[$slug])) {
-        return \Response::make($this->controller->run('404'), 404);
+        return $this->controller->run('404');
     }
     $location = $locations[$slug];
     $this['location'] = $location;

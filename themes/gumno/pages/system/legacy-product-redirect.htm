@@ -31,6 +31,6 @@ function onStart()
         }
     }
 
-    return Response::make($this->controller->run('404'), 404);
+    return $this->controller->run('404');
 }
 ==

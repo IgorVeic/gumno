@@ -26,7 +26,7 @@ function onStart()
             return \Redirect::to('/proizvod/' . rawurlencode($product['slug']), 301);
         }
     }
-    return \Response::make($this->controller->run('404'), 404);
+    return $this->controller->run('404');
 }
 ==
 {% if product.image %}

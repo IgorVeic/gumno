@@ -3,8 +3,8 @@ description = "SEO meta, Open Graph, and JSON-LD"
 {% set pageTitle = this.page.meta_title ?: (this.page.title ~ ' | Гумно Охрид') %}
 {% set pageDescription = this.page.meta_description ?: 'Гумно Охрид — производство на PVC цевки, фитинг, WC казанчиња и дистрибуција на санитарни брендови.' %}
 {% set path = this.page.id == 'home' ? '/' : this.page.url %}
-{% if this.param('slug') %}
-    {% set path = path|replace({':slug': this.param('slug')}) %}
+{% if this.param.slug %}
+    {% set path = path|replace({':slug': this.param.slug}) %}
 {% endif %}
 {% set absoluteUrl = url(path) %}
 {% set absoluteImage = url('assets/images/og-gumno.jpg'|theme) ~ '?v=2' %}
