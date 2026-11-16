@@ -56,6 +56,7 @@ $pageAliases = [
     '/sample-page' => '/',
     '/doma' => '/',
     '/intro' => '/',
+    '/pvo-cevki-za-kanalizacija' => '/proizvod/pvc-cevki-za-kanalizacija',
 ];
 foreach ($pageAliases as $from => $to) {
     gumnoAddRedirect($bucket, $from, $to, 'WP page alias');
